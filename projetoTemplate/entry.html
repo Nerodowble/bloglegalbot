@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Nova Publicação</title>
+</head>
+<body>
+    <header>
+        <h1>Blog Empresarial</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="entry.html">Nova Publicação</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Nova Publicação</h2>
+            <form action="insert_post.php" method="post">
+                <label for="title">Título:</label>
+                <input type="text" id="title" name="title" required><br>
+                
+                <label for="content">Conteúdo:</label>
+                <textarea id="content" name="content" rows="4" required></textarea><br>
+                
+                <label for="image">URL da Imagem:</label>
+                <input type="text" id="image" name="image"><br>
+                
+                <label for="hyperlink">Hyperlink:</label>
+                <input type="text" id="hyperlink" name="hyperlink"><br>
+                
+                <button type="submit">Publicar</button>
+            </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Blog Empresarial. Todos os direitos reservados.</p>
+    </footer>
+    
+    <!-- Script para exibir um popup de notificação -->
+    <script>
+        // Verifica se há um parâmetro de sucesso na querystring
+        var urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get("success")) {
+            alert("Publicação cadastrada com sucesso!");
+            window.location.href = "entry.html"; // Redireciona após a notificação
+        }
+    </script>
+</body>
+</html>
