@@ -4,25 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Blog Empresarial</title>
+    <title>Legalbot Compliance - DayOn</title>
 </head>
 <body>
     <header>
-        <h1>Blog Empresarial</h1>
+        <h1>Legalbot Compliance</h1>
         <nav>
+            <div class="menu-toggle" id="mobile-menu">
+                ☰
+            </div>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="entry.html">Nova Publicação</a></li>
+                <li><a href="posts_list.php">Edição de Publicações</a></li>
             </ul>
         </nav>
     </header>
 
-    <main id="blog-container"></main>
-
+    <main>
+        <div id="blog-container">
+            <!-- Aqui vamos exibir as postagens -->
+        </div>
+    </main>
+    
     <footer>
-        <p>&copy; 2023 Blog Empresarial. Todos os direitos reservados.</p>
+        <p>© 2023 Blog Empresarial. Todos os direitos reservados.</p>
     </footer>
+    
+    <!-- Script para exibir as postagens -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const blogContainer = document.getElementById("blog-container");
+    
+            fetch("get_posts.php")
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(post => {
+                        const article = document.createElement("article");
+                        article.innerHTML = `
+                            <h2>${post.title}</h2>
+                            <p>${post.content}</p>
+                            <img src="./imgs/${post.image_filename}" alt="Imagem">
+                            <a href="${post.hyperlink}" target="_blank">${post.hyperlink}</a>
+                        `;
+                        blogContainer.appendChild(article);
+                    });
+                })
+                .catch(error => console.error("Erro:", error));
+        });
 
-    <script src="display-script.js"></script>
+        // Função para ativar/desativar o menu mobile
+        const mobileMenuToggle = document.getElementById("mobile-menu");
+        const navList = document.querySelector("nav ul");
+
+        mobileMenuToggle.addEventListener("click", () => {
+            navList.classList.toggle("active");
+        });
+    </script>
 </body>
 </html>

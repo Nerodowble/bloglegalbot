@@ -4,37 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Nova Publicação</title>
+    <title>Legalbot Compliance - DayOn</title>
 </head>
 <body>
     <header>
-        <h1>Blog Empresarial</h1>
+        <h1>Legalbot Compliance</h1>
+        <div class="menu-toggle">&#9776;</div> <!-- Adicione o botão do menu -->
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="entry.html">Nova Publicação</a></li>
+                <li><a href="posts_list.php">Edição de Conteúdo</a></li>
             </ul>
         </nav>
     </header>
-
-    <main>
-        <h2>Nova Publicação</h2>
-            <form action="insert_post.php" method="post">
-                <label for="title">Título:</label>
-                <input type="text" id="title" name="title" required><br>
-                
-                <label for="content">Conteúdo:</label>
-                <textarea id="content" name="content" rows="4" required></textarea><br>
-                
-                <label for="image">URL da Imagem:</label>
-                <input type="text" id="image" name="image"><br>
-                
-                <label for="hyperlink">Hyperlink:</label>
-                <input type="text" id="hyperlink" name="hyperlink"><br>
-                
-                <button type="submit">Publicar</button>
-            </form>
-    </main>
+    <div id="blog-container">
+    <article>
+        <main>
+                <h2 style="padding: 15px;">Nova Publicação</h2>
+                <form action="insert_post.php" method="post" enctype="multipart/form-data" class="entry-form">
+                    <label for="title" style="padding: 14px;">Título:</label>
+                    <input type="text" id="title" name="title" required><br>
+                    <br>
+                    <label for="content" style="padding: 3px;">Conteúdo:</label>
+                    <textarea id="content" name="content" rows="4" required></textarea><br>
+                    <br>
+                    <label for="image" style="padding: 9px;">Imagem:</label>
+                    <input type="file" id="image" name="image"><br>
+                    <br>
+                    <label for="hyperlink" style="padding: 2px;">Hyperlink:</label>
+                    <input type="text" id="hyperlink" name="hyperlink"><br>
+                    <br>
+                    <button type="submit">Publicar</button>
+                </form>
+        </main>
+    </article>
+    </div>
 
     <footer>
         <p>&copy; 2023 Blog Empresarial. Todos os direitos reservados.</p>
@@ -48,6 +53,14 @@
             alert("Publicação cadastrada com sucesso!");
             window.location.href = "entry.html"; // Redireciona após a notificação
         }
+
+        // Menu responsivo
+        const menuToggle = document.querySelector(".menu-toggle");
+        const navUl = document.querySelector("nav ul");
+
+        menuToggle.addEventListener("click", () => {
+            navUl.classList.toggle("active");
+        });
     </script>
 </body>
 </html>
